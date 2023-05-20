@@ -53,7 +53,7 @@ export default function HomePage() {
       }
     }
 
-    if(key.toLowerCase() === "backspace"){
+    if(key.toLowerCase() === "backspace" || key.toLowerCase() === "del"){
       deleteChar();
     }
 
@@ -236,7 +236,7 @@ function Keyboard ({ onKeyClick }) {
   const chars3 = Array.from("zxcvbnm");
   const rows = [chars1, chars2, chars3];
   chars3.unshift("enter");
-  chars3.push("backspace");
+  chars3.push("del");
 
   return (
     <div id={styles.keyboard}>
