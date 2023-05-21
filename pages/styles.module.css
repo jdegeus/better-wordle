@@ -21,8 +21,9 @@
 
 .keyboardChar {
     width: 10%;
-    height: 50px;
-    padding: 3px;
+    height: 55px;
+    padding: 1px;
+    max-width: 60px;
 }
 
 .keyboardChar span {
@@ -35,16 +36,19 @@
     background-color: white;
     cursor: pointer;
     text-transform: uppercase;
+    box-shadow: 1px 1px 0px 3px;
 }
 
 .keyboardRow:last-child .keyboardChar:first-child {
     width: 15%;
     font-size: 0.7rem;
+    max-width: 90px;
 }
 
 .keyboardRow:last-child .keyboardChar:last-child {
     width: 15%;
     font-size: 0.7rem;
+    max-width: 90px;
 }
 
 #letterBoard {
@@ -59,7 +63,7 @@
 .letterBox {
     height: 50px;
     width: 50px;
-    padding: 3px;
+    padding: 1px;
 }
 
 .letterBox span {
@@ -70,6 +74,8 @@
     background-color: white;
     text-transform: uppercase;
     font-weight: 700;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0 3px;
 }
 
 .CORRECT_SPOT span {
