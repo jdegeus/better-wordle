@@ -24,6 +24,7 @@
     height: 55px;
     padding: 1px;
     max-width: 60px;
+    font-size: 1.4rem;
 }
 
 .keyboardChar span {
@@ -36,7 +37,7 @@
     background-color: white;
     cursor: pointer;
     text-transform: uppercase;
-    box-shadow: 1px 1px 0px 3px;
+    box-shadow: 1px 1px 0px 3px black;
 }
 
 .keyboardRow:last-child .keyboardChar:first-child {
@@ -52,7 +53,7 @@
 }
 
 #letterBoard {
-    padding: 30px 0 10px;
+    padding: 30px 0 15px;
 }
 
 .letterBoxesRow {
@@ -75,15 +76,16 @@
     text-transform: uppercase;
     font-weight: 700;
     border-radius: 5px;
-    box-shadow: 1px 1px 0 3px;
+    box-shadow: 1px 1px 0 3px black;
 }
 
 .CORRECT_SPOT span {
-    background-color: rgb(165, 255, 165);
+    background-color: #02cd75;
+    color: white;
 }
 
 .WRONG_SPOT span {
-    background-color: rgb(255, 243, 131);
+    background-color: #FFE569;
 }
 
 .NO_SPOT span {
@@ -91,7 +93,8 @@
 }
 
 .hasWon .letterBoxesRow:last-child span {
-    background-color: rgb(165, 255, 165);
+    background-color: #02cd75;
+    color: white;
 }
 
 .messageBox {
