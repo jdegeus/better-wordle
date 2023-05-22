@@ -27,7 +27,7 @@ export default function HomePage() {
   const [meaningOpen, setMeaningOpen] = useState(false);
   const [isLoadingMeaning, setIsLoadingMeaning] = useState(false);
 
-  async function handleKey(key) {
+  function handleKey(key) {
 
     if(key.toLowerCase() === "escape") {
       setMeaningOpen(false);
@@ -42,9 +42,15 @@ export default function HomePage() {
         if(feedback === 'WIN'){
           setMessage({ content: 'You got it!', type: 'SUCCESS'});
 
-          const definition = await getMeaning(word.join(""));
-          setMeaning(definition);
-          return setHasWon(true);
+          setHasWon(true);
+          setIsLoadingMeaning(true);
+          getMeaning(word.join(""), (definition) => {
+            setIsLoadingMeaning(false);
+            setMeaning(definition);
+          },(err) => {
+            setIsLoadingMeaning(false);
+          });
+          return;
         }
 
         if(feedback === 'NON_EXISTENT') {
@@ -193,7 +199,7 @@ export default function HomePage() {
   return (
     <div tabIndex="1" id={styles.page} onKeyDown={handleKeyDown} ref={pageRef}>
         <Board draftWord={guess} guesses={guesses} hasWon={hasWon}></Board>
-        <Definition hasWon={hasWon} hasMeaning={meaning} openDefinition={handleOpenMeaning}></Definition>
+        <Definition isLoading={isLoadingMeaning} hasWon={hasWon} hasMeaning={meaning} openDefinition={handleOpenMeaning}></Definition>
         <Message message={message}></Message>
         <Keyboard onKeyClick={handleKeyClick} charlist={CHAR_LIST}></Keyboard>
         <Card data={meaning} open={meaningOpen} setOpen={setMeaningOpen}></Card>
@@ -201,13 +207,13 @@ export default function HomePage() {
   );
 }
 
-async function getMeaning(word) {
+async function getMeaning(word, resolve, reject) {
   try {
     const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
     const json = await response.json();
-    return json[0];
+    resolve(json[0]);
   } catch(err){
     console.log(err);
-    return null;
+    reject(err);
   }
 }
