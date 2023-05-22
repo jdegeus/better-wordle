@@ -104,29 +104,6 @@
     /*margin-top: auto;*/
 }
 
-#definitionCard {
-    position: fixed;
-    height: 100vh;
-    width: 100%;
-    top: 0;
-    left: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    background-color: rgba(0, 0, 0, 0.2);
-    overflow: auto;
-}
-
-#definitionCard .inner {
-    background-color: white;
-    padding: 20px 30px 40px;
-    width: 100%;
-    max-width: 800px;
-    border-radius: 10px;
-    box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.2);
-}
-
 .definitionButton {
     text-decoration: underline;
     cursor: pointer;
