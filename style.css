@@ -6,3 +6,20 @@ body {
     margin: 0;
     background-color: #EDF1D6;
 }
+
+.SPOT span {
+    background-color: white;
+}
+
+.CORRECT_SPOT span {
+    background-color: #02cd75;
+    color: white;
+}
+
+.WRONG_SPOT span {
+    background-color: #FFE569;
+}
+
+.NO_SPOT span {
+    background-color: rgb(174, 174, 174);
+}

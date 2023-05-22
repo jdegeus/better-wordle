@@ -1,0 +1,30 @@
+#letterBoard {
+    padding: 30px 0 15px;
+}
+
+.letterBoxesRow {
+    display: flex;
+    justify-content: center;
+}
+
+.letterBox {
+    height: 50px;
+    width: 50px;
+    padding: 1px;
+}
+
+.letterBox span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0 3px black;
+}
+
+.hasWon .letterBoxesRow:last-child span {
+    background-color: #02cd75;
+    color: white;
+}

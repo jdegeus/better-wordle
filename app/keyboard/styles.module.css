@@ -1,0 +1,40 @@
+#keyboard {
+    padding: 10px 5px;
+}
+
+.keyboardRow {
+    display: flex;
+    justify-content: center;
+}
+
+.keyboardChar {
+    width: 10%;
+    height: 55px;
+    padding: 1px;
+    max-width: 60px;
+    font-size: 1.4rem;
+}
+
+.keyboardChar span {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 1px 1px 0px 3px black;
+}
+
+.keyboardRow:last-child .keyboardChar:first-child {
+    width: 15%;
+    font-size: 0.7rem;
+    max-width: 90px;
+}
+
+.keyboardRow:last-child .keyboardChar:last-child {
+    width: 15%;
+    font-size: 0.7rem;
+    max-width: 90px;
+}
