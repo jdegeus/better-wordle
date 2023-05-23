@@ -8,19 +8,19 @@ import {
     faXmark
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function Card({ data, open, setOpen }) {
+export default function Card({ data, isOpen, closeCard }) {
 
     function handeOutsideClick(event){
         if(event.target.dataset.outside) {
-            setOpen(false);
+            closeCard();
         }
     }
 
     function handeXClick(){
-        setOpen(false);
+        closeCard();
     }
 
-    if (!open) return null;
+    if (!isOpen) return null;
     if (!data) return null;
 
     return (

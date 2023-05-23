@@ -2,7 +2,6 @@ import styles from './styles.module.css';
 import { useState, useEffect, useRef } from 'react';
 
 import Keyboard from '../app/keyboard/keyboard';
-import Card from '../app/card/card';
 import Board from '../app/board/board';
 import Message from '../app/message/message';
 import Definition from '../app/definition/definition';
@@ -23,14 +22,11 @@ export default function HomePage() {
   const [guesses, setGuesses] = useState([]);
   const [hasWon, setHasWon] = useState(false);
   const [message, setMessage] = useState(null);
-  const [meaning, setMeaning] = useState(null);
-  const [meaningOpen, setMeaningOpen] = useState(false);
-  const [isLoadingMeaning, setIsLoadingMeaning] = useState(false);
 
   function handleKey(key) {
 
     if(key.toLowerCase() === "escape") {
-      setMeaningOpen(false);
+      //setDefinitionOpen(false);
     }
 
     if(hasWon) return;
@@ -43,13 +39,6 @@ export default function HomePage() {
           setMessage({ content: 'You got it!', type: 'SUCCESS'});
 
           setHasWon(true);
-          setIsLoadingMeaning(true);
-          getMeaning(word.join(""), (definition) => {
-            setIsLoadingMeaning(false);
-            setMeaning(definition);
-          },(err) => {
-            setIsLoadingMeaning(false);
-          });
           return;
         }
 
@@ -174,10 +163,6 @@ export default function HomePage() {
     });
   }
 
-  function handleOpenMeaning(){
-    setMeaningOpen(true);
-  }
-
   useEffect(() => {
     pageRef.current.focus();
   });
@@ -199,21 +184,9 @@ export default function HomePage() {
   return (
     <div tabIndex="1" id={styles.page} onKeyDown={handleKeyDown} ref={pageRef}>
         <Board draftWord={guess} guesses={guesses} hasWon={hasWon}></Board>
-        <Definition isLoading={isLoadingMeaning} hasWon={hasWon} hasMeaning={meaning} openDefinition={handleOpenMeaning}></Definition>
+        <Definition hasWon={hasWon} word={word}></Definition>
         <Message message={message}></Message>
         <Keyboard onKeyClick={handleKeyClick} charlist={CHAR_LIST}></Keyboard>
-        <Card data={meaning} open={meaningOpen} setOpen={setMeaningOpen}></Card>
     </div>
   );
-}
-
-async function getMeaning(word, resolve, reject) {
-  try {
-    const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
-    const json = await response.json();
-    resolve(json[0]);
-  } catch(err){
-    console.log(err);
-    reject(err);
-  }
 }
