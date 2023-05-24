@@ -11,7 +11,7 @@ export default function Keyboard ({ charlist, onKeyClick }) {
     chars3.push("enter");
   
     return (
-      <div id={styles.keyboard}>
+      <div id={styles.keyboard} data-cy="keyboard">
           {
             rows.map((row, index) =>
               <div key={ index } className={ styles.keyboardRow }>
@@ -19,7 +19,7 @@ export default function Keyboard ({ charlist, onKeyClick }) {
                 <div 
                 key={ index } 
                 className={ `${styles.keyboardChar} SPOT ${charlist[char]?.status}`}>
-                  <span onClick={()=>onKeyClick(char)} >{ char }</span>
+                  <span onClick={()=>onKeyClick(char)} data-cy={`keyboard-char-${char}`}>{ char }</span>
                 </div>)
                 }
               </div>  

@@ -1,5 +1,3 @@
-'use client';
-
 import styles from './styles.module.css';
 
 import Card from '../card/card';
@@ -31,10 +29,11 @@ export default function Definition({ hasWon, word }) {
       });
     }
   }, [hasWon])
+  
   if(!hasWon) return;
 
   return (
-    <div className={styles.buttonRow}>
+    <div className={styles.buttonRow} data-cy="definition">
       <Element isLoading={isLoading} hasDefinition={definition} openDefinition={openDefinition}></Element>
       <Card data={definition} isOpen={isOpen} closeCard={closeDefinition}></Card>
     </div>

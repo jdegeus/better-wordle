@@ -1,5 +1,6 @@
 import styles from './styles.module.css';
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 
 import Keyboard from '../app/keyboard/keyboard';
 import Board from '../app/board/board';
@@ -11,10 +12,11 @@ import { WORD_LIST } from '../../public/words_en';
 const CHAR_LIST = Object.fromEntries(Array.from("qwertyuiopasdfghjklzxcvbnm").map(e => [e, { char: e, status: null}]));
 const SPECIAL_CHAR_REGEX = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 const INITIAL_WORD = Array.from(WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)]);
-//const INITIAL_WORD = Array.from('pinda');
+//const INITIAL_WORD = Array.from('abaca');
 
 export default function HomePage() {
   const pageRef = useRef();
+  const router = useRouter();
 
   //const [word, setWord] = useState(Array.from(WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)]));
   const [word, setWord] = useState(INITIAL_WORD);
@@ -23,6 +25,12 @@ export default function HomePage() {
   const [guesses, setGuesses] = useState([]);
   const [hasWon, setHasWon] = useState(false);
   const [message, setMessage] = useState(null);
+
+  useEffect(() => {
+    if(router.query?.word){
+      setWord(Array.from(router.query?.word));
+    }
+  }, [router.query.word]);
 
   function handleKey(key) {
 
@@ -172,8 +180,8 @@ export default function HomePage() {
     if(cursorIndex !== word.length - 1 || guess[word.length - 1] === null){
       setMessage(null);
     }
-  }, guess);
-
+    
+  }, [guess]);
 
   for(const guess of guesses){
     for(const pos of guess) {
@@ -181,9 +189,9 @@ export default function HomePage() {
       CHAR_LIST[pos.char].status = pos.result;
     }
   }
-
+  
   return (
-    <div tabIndex="1" id={styles.page} onKeyDown={handleKeyDown} ref={pageRef}>
+    <div tabIndex="1" id={styles.page} onKeyDown={handleKeyDown} ref={pageRef} data-cy="homepage">
         <Board draftWord={guess} guesses={guesses} hasWon={hasWon}></Board>
         <Definition hasWon={hasWon} word={word}></Definition>
         <Message message={message}></Message>

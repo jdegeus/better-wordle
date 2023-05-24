@@ -26,7 +26,7 @@ export default function Card({ data, isOpen, closeCard }) {
     if (!data) return null;
 
     return (
-        <div id={styles.card} onClick={(event)=> handeOutsideClick(event)} data-outside>
+        <div id={styles.card} onClick={(event)=> handeOutsideClick(event)} data-outside data-cy="card">
             <div className={styles.inner}>
                 <div className={styles.closeButton} onClick={()=> handeXClick()}>
                     <FontAwesomeIcon className={styles.xMark} icon={faXmark}/>

@@ -16,7 +16,7 @@ export default function Layout({ children }) {
   return (
     <>
       {/* <Navbar /> */}
-      <main className={ubuntu.className}>{children}</main>
+      <main className={ubuntu.className} data-cy="layout">{children}</main>
       {/* <Footer /> */}
     </>
   );
