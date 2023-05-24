@@ -7,6 +7,12 @@ body {
     background-color: #EDF1D6;
 }
 
+#layout {
+  height: 100vh;
+  height: 100dvh;
+  overflow: auto;
+}
+
 .SPOT span {
     background-color: white;
 }
