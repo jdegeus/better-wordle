@@ -1,4 +1,4 @@
-import '../style.css';
+import './style.css';
 // import Font Awesome CSS
 import "@fortawesome/fontawesome-svg-core/styles.css"; 
 
