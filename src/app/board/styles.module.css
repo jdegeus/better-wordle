@@ -24,6 +24,10 @@
     box-shadow: 1px 1px 0 3px black;
 }
 
+.hasWon .letterBoxesRow:last-child {
+    display: none;
+}
+
 .hasWon .letterBoxesRow:last-child span {
     background-color: #02cd75;
     color: white;

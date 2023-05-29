@@ -26,6 +26,7 @@ body {
     background-color: #FFE569;
 }
 
-.NO_SPOT span {
+.NO_SPOT span,
+.WRONG_SPOT_EXTRA span {
     background-color: rgb(174, 174, 174);
 }

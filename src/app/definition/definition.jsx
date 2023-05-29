@@ -21,7 +21,7 @@ export default function Definition({ hasWon, word }) {
   useEffect(() => {
     if(hasWon){
       setIsLoading(true);
-      getDefinition(word.join(""), (def) => {
+      getDefinition(word, (def) => {
         setIsLoading(false);
         setDefinition(def);
       },(err) => {
