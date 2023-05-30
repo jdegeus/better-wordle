@@ -69,6 +69,8 @@ describe('Guessing', () => {
     cy.get(`[data-cy="keyboard-char-${WORD_3[3]}"]`).parent().should('have.class', 'CORRECT_SPOT')
     cy.get(`[data-cy="keyboard-char-${WORD_3[4]}"]`).parent().should('have.class', 'NO_SPOT');
 
+    // GOOD ANSWER
+
     cy.get('[data-cy="homepage"]').type(`${ANSWER}{enter}`);
 
     cy.get('[data-cy="guesses-row"]').should('have.length', 4).last()

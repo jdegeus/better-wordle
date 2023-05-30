@@ -28,6 +28,7 @@ export default function HomePage() {
   ));
 
   const [hasWon, setHasWon] = useState(false);
+  const [isDefinitionOpen, setIsDefinitionOpen] = useState(false);
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function HomePage() {
   function handleKey(key) {
 
     if (key.toLowerCase() === "escape") {
-      //setDefinitionOpen(false);
+      setIsDefinitionOpen(false);
     }
 
     if (hasWon) return;
@@ -249,7 +250,7 @@ export default function HomePage() {
   return (
     <div tabIndex="1" id={styles.page} onKeyDown={handleKeyDown} ref={pageRef} data-cy="homepage">
       <Board draftWord={guess} guesses={guesses} hasWon={hasWon}></Board>
-      <Definition hasWon={hasWon} word={answer?.join("")}></Definition>
+      <Definition hasWon={hasWon} word={answer?.join("")} isOpen={isDefinitionOpen} setIsOpen={setIsDefinitionOpen}></Definition>
       <Message message={message}></Message>
       <Keyboard onKeyClick={handleKeyClick} charlist={charStatus}></Keyboard>
     </div>

@@ -5,9 +5,8 @@ import DefaultButton from '../buttons/defaultButton';
 
 import { useEffect, useState } from 'react';
 
-export default function Definition({ hasWon, word }) {
+export default function Definition({ hasWon, word, isOpen, setIsOpen }) {
   const [definition, setDefinition] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   function openDefinition(){
