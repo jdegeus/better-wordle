@@ -1,0 +1,14 @@
+
+#controlBar {
+  margin-bottom: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.icon {
+  margin-right: -6px;
+  margin-left: 5px;
+  vertical-align: -3px;
+  font-size: 14px;
+}

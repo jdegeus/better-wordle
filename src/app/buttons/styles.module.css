@@ -2,3 +2,15 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+.actionButton {
+  cursor: pointer;
+  padding: 5px 20px 6px;
+  line-height: 18px;
+  color: white;
+  font-weight: 700;
+  background-color: black;
+  border-radius: 30px;
+  box-shadow: 2px 2px 0 0 white;
+  font-size: 14px;
+}

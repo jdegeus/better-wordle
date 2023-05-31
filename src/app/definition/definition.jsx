@@ -51,7 +51,6 @@ async function getDefinition(word, resolve, reject) {
     const json = await response.json();
     resolve(json[0]);
   } catch(err){
-    console.log(err);
     reject(err);
   }
 }

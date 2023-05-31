@@ -8,6 +8,7 @@ describe('Navigation', () => {
     // All main components should exist or not exist.
     cy.get('[data-cy="layout"]').should('exist');
     cy.get('[data-cy="homepage"]').should('exist');
+    cy.get('[data-cy="control-bar"]').should('exist');
     cy.get('[data-cy="board"]').should('exist');
     cy.get('[data-cy="message"]').should('not.exist');
     cy.get('[data-cy="definition"]').should('not.exist');

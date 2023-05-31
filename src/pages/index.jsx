@@ -2,6 +2,7 @@ import styles from './styles.module.css';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 
+import ControlBar from '../app/controlbar/controlbar';
 import Keyboard from '../app/keyboard/keyboard';
 import Board from '../app/board/board';
 import Message from '../app/message/message';
@@ -31,11 +32,6 @@ export default function HomePage() {
   const [isDefinitionOpen, setIsDefinitionOpen] = useState(false);
   const [message, setMessage] = useState(null);
 
-  useEffect(() => {
-    if (router.query?.word) {
-      setAnswer(Array.from(router.query?.word));
-    }
-  }, [router.query.word]);
 
   function handleKey(key) {
 
@@ -230,25 +226,48 @@ export default function HomePage() {
     return attempt;
   }
 
+  function handleGetNewWord() {
+    setAnswer(null);
+    setCursorIndex(0);
+    setGuess(new Array(5).fill(null));
+    setGuesses([]);
+    setCharStatus(Object.fromEntries(
+      Array.from("qwertyuiopasdfghjklzxcvbnm").map(char => [
+        char, {
+          char,
+          status: null
+        }
+      ])
+    ));
+    setHasWon(false);
+    setIsDefinitionOpen(false);
+    setMessage(null);
+  }
+
+  useEffect(() => {
+    if (router.query?.word) {
+      setAnswer(Array.from(router.query?.word));
+    }
+  }, [router.query.word]);
+
   useEffect(() => {
     if (!answer) {
-      setAnswer(Array.from(WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)]));
+      if (router.query?.word) {
+        setAnswer(Array.from(router.query?.word));
+      } else {
+        setAnswer(Array.from(WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)]));
+      }
     }
-
     pageRef.current.focus();
-  });
+  }, [answer]);
 
   useEffect(() => {
-    //console.log(answer.join(""));
-  }, [guess]);
-
-  useEffect(() => {
-    //console.log(answer.join(""));
     updateCharStatus();
   }, [guesses]);
 
   return (
     <div tabIndex="1" id={styles.page} onKeyDown={handleKeyDown} ref={pageRef} data-cy="homepage">
+      <ControlBar getNewWord={handleGetNewWord}></ControlBar>
       <Board draftWord={guess} guesses={guesses} hasWon={hasWon}></Board>
       <Definition hasWon={hasWon} word={answer?.join("")} isOpen={isDefinitionOpen} setIsOpen={setIsDefinitionOpen}></Definition>
       <Message message={message}></Message>
