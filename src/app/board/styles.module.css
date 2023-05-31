@@ -8,9 +8,33 @@
 }
 
 .letterBox {
-    height: 50px;
-    width: 50px;
-    padding: 1px;
+  position: relative;
+  height: 50px;
+  width: 50px;
+  padding: 1px;
+}
+
+.letterBox:after {
+  content: '';
+  position: absolute;
+  display: block;
+  background-color: transparent;
+  height: 5px;
+  width: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+}
+
+.letterBoxActive:after {
+  background-color: black;
+  animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }
 
 .letterBox span {

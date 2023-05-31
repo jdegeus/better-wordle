@@ -39,7 +39,10 @@ export default function HomePage() {
       setIsDefinitionOpen(false);
     }
 
-    if (hasWon) return;
+    if (hasWon) {
+      if (key === "r") handleGetNewWord();
+      return;
+    }
     setMessage(null);
 
     if (key.toLowerCase() === "enter") {
@@ -69,6 +72,14 @@ export default function HomePage() {
 
     if (key.length === 1) {
       addChar(key);
+    }
+
+    if(key.toLowerCase() === "arrowright"){
+      setCursorIndex(Math.min(cursorIndex + 1, guess.length - 1));
+    }
+
+    if(key.toLowerCase() === "arrowleft"){
+      setCursorIndex(Math.max(cursorIndex - 1, 0));
     }
   }
 
@@ -113,9 +124,6 @@ export default function HomePage() {
   function addChar(char) {
     setGuess(() => {
       const newGuess = [...guess];
-      if (newGuess[cursorIndex] !== null) {
-        return guess;
-      }
       newGuess[cursorIndex] = char;
       setCursorIndex(Math.min(cursorIndex + 1, guess.length - 1));
       return newGuess;
@@ -268,7 +276,7 @@ export default function HomePage() {
   return (
     <div tabIndex="1" id={styles.page} onKeyDown={handleKeyDown} ref={pageRef} data-cy="homepage">
       <ControlBar getNewWord={handleGetNewWord}></ControlBar>
-      <Board draftWord={guess} guesses={guesses} hasWon={hasWon}></Board>
+      <Board draftWord={guess} guesses={guesses} hasWon={hasWon} setIndex={setCursorIndex} currentIndex={cursorIndex}></Board>
       <Definition hasWon={hasWon} word={answer?.join("")} isOpen={isDefinitionOpen} setIsOpen={setIsDefinitionOpen}></Definition>
       <Message message={message}></Message>
       <Keyboard onKeyClick={handleKeyClick} charlist={charStatus}></Keyboard>

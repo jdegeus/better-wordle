@@ -21,12 +21,18 @@ describe('Guessing', () => {
     cy.get(`[data-cy="action-button"]`).should('exist').click();
 
     oneGame();
+
+    cy.get('[data-cy="homepage"]').type(`r`);
+
+    oneGame();
   });
 });
 
 function oneGame(){
   
   // WORD 1
+
+  cy.focused();
 
   cy.get('[data-cy="homepage"]').type(`${WORD_1}{enter}`);
 

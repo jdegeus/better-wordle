@@ -4,7 +4,7 @@ const ANSWER = "oriel";
 describe('Guessing', () => {
   it('Users can make guess by either typing with keyboard or using provided character buttons.', () => {
     //cy.viewport('iphone-xr');
-    cy.viewport(414, 414);
+    cy.viewport(500, 500);
 
     expect(WORD_LIST).to.be.a('array');
 
@@ -15,6 +15,8 @@ describe('Guessing', () => {
     cy.get('[data-cy="homepage"]').should('exist');
 
     // GOOD ANSWER
+
+    cy.focused();
 
     cy.get('[data-cy="homepage"]').type(`${ANSWER}{enter}`);
 

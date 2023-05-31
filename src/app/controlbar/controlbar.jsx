@@ -16,7 +16,7 @@ import ActionButton from '../buttons/actionButton';
 export default function ControlBar({ getNewWord }) {
     return (
       <div id={styles.controlBar} data-cy="control-bar">
-        <ActionButton trigger={getNewWord}>New word <FontAwesomeIcon className={styles.icon} icon={faRotateRight}/></ActionButton>
+        <ActionButton trigger={getNewWord}>New word (R) <FontAwesomeIcon className={styles.icon} icon={faRotateRight}/></ActionButton>
       </div>
     )
 }

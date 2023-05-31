@@ -2,7 +2,7 @@
 
 import styles from './styles.module.css';
 
-export default function Board({ draftWord, guesses, hasWon }) {
+export default function Board({ draftWord, guesses, hasWon, setIndex, currentIndex }) {
 
     return(
       <div id={styles.letterBoard} className={`${hasWon ? styles['hasWon'] : ""}`} data-cy="board">
@@ -17,7 +17,10 @@ export default function Board({ draftWord, guesses, hasWon }) {
         }
         <div className={styles.letterBoxesRow}>
           {
-            draftWord.map((char, index) => <div key={index} className={`${styles.letterBox} SPOT`}><span>{ char }</span></div>)
+            draftWord.map((char, index) => 
+            <div key={index} onClick={() => setIndex(index)} className={`${styles.letterBox} SPOT ${currentIndex === index ? styles.letterBoxActive : ""}`}>
+              <span>{ char }</span>
+            </div>)
           }
         </div>
       </div>
