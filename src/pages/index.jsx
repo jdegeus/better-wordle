@@ -46,7 +46,9 @@ export default function HomePage() {
     setMessage(null);
 
     if (key.toLowerCase() === "enter") {
-      if (cursorIndex === answer?.length - 1 && guess[cursorIndex] !== null) {
+      if (guess[cursorIndex] !== null
+        //&& cursorIndex === answer?.length - 1
+        ) {
         const response = makeGuess();
         if (response === 'WIN') {
           resetInput();
@@ -276,7 +278,7 @@ export default function HomePage() {
   return (
     <div tabIndex="1" id={styles.page} onKeyDown={handleKeyDown} ref={pageRef} data-cy="homepage">
       <ControlBar getNewWord={handleGetNewWord}></ControlBar>
-      <Board draftWord={guess} guesses={guesses} hasWon={hasWon} setIndex={setCursorIndex} currentIndex={cursorIndex}></Board>
+      <Board draftWord={guess} guesses={guesses} hasWon={hasWon} setIndex={setCursorIndex} currentIndex={cursorIndex} clickChar={handleKey}></Board>
       <Definition hasWon={hasWon} word={answer?.join("")} isOpen={isDefinitionOpen} setIsOpen={setIsDefinitionOpen}></Definition>
       <Message message={message}></Message>
       <Keyboard onKeyClick={handleKeyClick} charlist={charStatus}></Keyboard>
